@@ -7,7 +7,10 @@ import { HeroDetailComponent } from './components/hero-detail/hero-detail.compon
 import { MessagesComponent } from './components/messages/messages.component';
 import { HeroesComponent } from './components/heroes/heroes.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { AppRoutingModule } from './modules/app-routing.module';
+import { AppRoutingModule } from './modules/app-routing.module';import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService }  from './in-memory-data.service';
+import { HttpClientModule }    from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -20,7 +23,14 @@ import { AppRoutingModule } from './modules/app-routing.module';
   imports: [
     BrowserModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
+    // and returns simulated server responses.
+    // Remove it when a real server is ready to receive requests.
+    HttpClientInMemoryWebApiModule.forRoot(
+        InMemoryDataService, { dataEncapsulation: false }
+    )
   ],
   providers: [],
   bootstrap: [AppComponent]
