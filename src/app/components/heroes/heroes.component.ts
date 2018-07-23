@@ -1,6 +1,8 @@
-import { HeroService } from '../service/hero.service';
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../data/hero';
+import { Hero } from '../../data/hero';
+import { HeroService } from '../../service/hero.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
     selector: 'app-heroes',
@@ -10,18 +12,9 @@ import { Hero } from '../data/hero';
 export class HeroesComponent implements OnInit {
     heroes: Hero[];
 
-    selectedHero:Hero;
-
-    hero:Hero = {
-        id:1,
-        name:'Windstorm'
-    };
-
-    constructor(private heroService:HeroService) { }
-
-    public onSelect(hero:Hero):void{
-        this.selectedHero = hero;
-    }
+    constructor(
+        private heroService:HeroService 
+    ) { }
 
     public initHeroes():void {
         this.heroService
